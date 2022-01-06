@@ -29,6 +29,8 @@ dependencies:
   logger: ^1.1.0
   introduction_screen: ^2.1.0
   carousel_slider: ^4.0.0
+  sms_autofill: ^2.1.2  # auto fill otp for android
+  flutter_translate: ^3.0.1 # multi language
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -6,7 +6,7 @@ import 'package:my_gstore/common/theme/theme_color.dart';
 import 'package:my_gstore/common/theme/theme_text.dart';
 import 'package:my_gstore/common/ultils/common_util.dart';
 import 'package:my_gstore/common/ultils/screen_utils.dart';
-import 'package:my_gstore/routes.dart';
+import 'package:my_gstore/presentation/routes.dart';
 
 import 'custom_gesturedetactor.dart';
 

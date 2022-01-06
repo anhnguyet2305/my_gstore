@@ -9,9 +9,9 @@ import 'package:my_gstore/common/exception/timeout_exception.dart';
 import 'package:my_gstore/common/exception/token_expired_exception.dart';
 import 'package:my_gstore/common/navigation/route_names.dart';
 import 'package:my_gstore/common/network/app_client.dart';
-import 'package:my_gstore/feature/injector_container.dart';
+import 'package:my_gstore/presentation/injector_container.dart';
 
-import '../../routes.dart';
+import '../../presentation/routes.dart';
 import 'log_util.dart';
 
 class CommonUtils {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_gstore/common/theme/theme_color.dart';
 import 'package:my_gstore/common/theme/theme_text.dart';
 
-import '../../routes.dart';
+import '../../presentation/routes.dart';
 
 class MyAppBar extends StatefulWidget {
   String title;

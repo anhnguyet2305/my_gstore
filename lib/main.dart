@@ -1,10 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_gstore/feature/app.dart';
-import 'package:my_gstore/feature/injector_container.dart' as di;
+import 'package:my_gstore/presentation/app.dart';
+import 'package:my_gstore/presentation/injector_container.dart' as di;
 
 dynamic decodeIsolate(String response) => jsonDecode(response);
 
