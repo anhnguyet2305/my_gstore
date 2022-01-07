@@ -31,6 +31,11 @@ dependencies:
   carousel_slider: ^4.0.0
   sms_autofill: ^2.1.2  # auto fill otp for android
   flutter_translate: ^3.0.1 # multi language
+  hive: ^2.0.4 # local storage
+  cached_network_image: ^3.1.0  # cache image
+  shimmer: ^2.0.0  # shimmer when wait loading data
+  google_maps_flutter: ^2.0.9 # google map
+  flutter_polyline_points: ^1.0.0 #draw direction google map
 dev_dependencies:
   flutter_test:
     sdk: flutter

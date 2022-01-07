@@ -11,6 +11,7 @@ class StringConst {
   static const String getNewOTP = 'Gửi mã xác nhận mới !';
   static const String notification = 'Thông báo';
   static const String someThingWentWrong = 'Lỗi không xác định';
+  static const String next = 'Tiếp';
   static const String versionLoginInvalid =
       'Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại!';
   static const String gShop = 'G-Shop';

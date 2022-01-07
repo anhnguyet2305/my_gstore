@@ -3,18 +3,111 @@ import 'package:flutter/material.dart';
 import 'package:my_gstore/common/bloc/snackbar_bloc/snackbar_bloc.dart';
 import 'package:my_gstore/common/bloc/snackbar_bloc/snackbar_event.dart';
 import 'package:my_gstore/common/bloc/snackbar_bloc/snackbar_state.dart';
+import 'package:my_gstore/common/constants/home_constant.dart';
 import 'package:my_gstore/common/exception/app_exception.dart';
 import 'package:my_gstore/common/exception/connect_exception.dart';
 import 'package:my_gstore/common/exception/timeout_exception.dart';
 import 'package:my_gstore/common/exception/token_expired_exception.dart';
 import 'package:my_gstore/common/navigation/route_names.dart';
 import 'package:my_gstore/common/network/app_client.dart';
+import 'package:my_gstore/common/network/configs.dart';
 import 'package:my_gstore/presentation/injector_container.dart';
 
 import '../../presentation/routes.dart';
+import '../enum.dart';
 import 'log_util.dart';
 
 class CommonUtils {
+  static bool isEmptyOrNull(dynamic obj) {
+    try {
+      return (obj == null || obj.isEmpty);
+    } catch (e) {
+      return true;
+    }
+  }
+
+  static String textHelloInHome() {
+    int hour = DateTime.now().hour;
+    if (hour >= 4 && hour < 12) {
+      return HomeConstant.goodMorning;
+    }
+    if (hour == 12) {
+      return HomeConstant.goodLunch;
+    }
+    if (hour >= 13 && hour <= 18) {
+      return HomeConstant.goodAfterNoon;
+    }
+    return HomeConstant.goodEvening;
+  }
+
+  static String getTwoCharOfName(String? name) {
+    try {
+      if (name == null || name.isEmpty) {
+        return '';
+      }
+      List<String> listChar = name.trim().split(' ');
+      if (listChar.length == 1) {
+        if (listChar[0].length == 1) {
+          return listChar[0].toUpperCase();
+        } else {
+          return listChar[0].substring(0, 2).toUpperCase();
+        }
+      }
+      return '${listChar[0].substring(0, 1)}${listChar.last.substring(0, 1)}'
+          .toUpperCase();
+    } catch (_) {
+      return name ?? '';
+    }
+  }
+
+  static bool _getOld(String endpoint) {
+    try {
+      List<String> result = endpoint.split('/');
+      result.removeLast();
+      DateTime oldTime = DateTime(
+        int.parse(result[0]),
+        int.parse(result[1]),
+        int.parse(result[2]),
+      );
+      DateTime temp = DateTime(2020, 12, 1);
+      return oldTime.isBefore(temp);
+    } catch (e) {
+      return true;
+    }
+  }
+
+  static String? getUrlImage(
+    String? endPoint, {
+    TypeSizeImage? typeImage,
+    bool havedType = false,
+    bool typePng = false,
+    bool? oldUrl,
+  }) {
+    if (endPoint == null || endPoint.isEmpty) {
+      return null;
+    }
+    bool _oldUrl = _getOld(endPoint);
+    if (oldUrl == true) {
+      _oldUrl = true;
+    }
+    String type;
+    switch (typeImage) {
+      case TypeSizeImage.thumbs:
+        type = '250x250';
+        break;
+      case TypeSizeImage.medium:
+        type = '400x400';
+        break;
+      case TypeSizeImage.small:
+        type = '150x150';
+        break;
+      default:
+        type = '1000x1000';
+        break;
+    }
+    return 'http://image.gstore.social/ResizeImg/ImageResize/$type/resize${typePng ? 'png' : ''}/normal/high/${_oldUrl ? Configurations.hostImageOld : Configurations.hostImage}$endPoint';
+  }
+
   static void handleException(SnackBarBloc? snackBarBloc, e,
       {required String methodName,
       String? exceptionName,

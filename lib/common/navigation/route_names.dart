@@ -6,4 +6,5 @@ class RouteName {
   static const String loginWithPhoneNumber = 'loginWithPhoneNumber';
   static const String confirmScreen = 'confirmScreen';
   static const String containerScreen = 'containerScreen';
+  static const String onBoardingScreen = 'onBoardingScreen';
 }

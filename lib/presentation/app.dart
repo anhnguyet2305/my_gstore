@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_gstore/common/bloc/snackbar_bloc/snackbar_bloc.dart';
 import 'package:my_gstore/common/bloc/snackbar_bloc/snackbar_state.dart';
+import 'package:my_gstore/common/constants/string_const.dart';
 import 'package:my_gstore/common/navigation/route_names.dart';
 import 'package:my_gstore/common/theme/theme_color.dart';
 import 'package:my_gstore/common/ultils/screen_utils.dart';
@@ -10,7 +11,6 @@ import 'package:my_gstore/presentation/journey/feature/widgets/loading_container
 import 'package:my_gstore/presentation/routes.dart';
 
 import 'injector_container.dart';
-
 
 class App extends StatefulWidget {
   @override
@@ -102,14 +102,14 @@ class _AppState extends State<App> {
       child: MaterialApp(
         navigatorKey: Routes.instance.navigatorKey,
         debugShowCheckedModeBanner: false,
-        title: 'G-Store',
+        title: StringConst.appName,
         onGenerateRoute: Routes.generateRoute,
         initialRoute: RouteName.splashScreen,
         theme: ThemeData(
             primaryColor: AppColors.primaryColor,
             fontFamily: 'Roboto',
             canvasColor: Colors.transparent,
-            bottomAppBarColor: Color(0xff989898),
+            bottomAppBarColor: const Color(0xff989898),
             platform: TargetPlatform.iOS,
             pageTransitionsTheme: const PageTransitionsTheme(builders: {
               TargetPlatform.android: CupertinoPageTransitionsBuilder(),

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:my_gstore/common/constants/image_constant.dart';
+import 'package:my_gstore/common/constants/string_const.dart';
+import 'package:my_gstore/common/navigation/route_names.dart';
+import 'package:my_gstore/common/theme/theme_color.dart';
 import 'package:my_gstore/common/theme/theme_text.dart';
+import 'package:my_gstore/presentation/routes.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -19,110 +24,109 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 1.2 / 5,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/logo.png',
-                    width: 82.0,
-                  ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  Text(
-                    'G-STORE',
-                    style: AppTextTheme.medium20PxBlack,
-                  ),
-                  Text(
-                    'Tech company',
-                    style: AppTextTheme.smallGrey,
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 3.4 / 5,
-              child: IntroductionScreen(
-                showDoneButton: true,
-                showNextButton: true,
-                showSkipButton: false,
-                next: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 1.2 / 4.3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Next', style: TextStyle(fontSize: 14.0)),
-                    Icon(Icons.keyboard_arrow_right),
+                    const SizedBox(
+                      height: 16.0,
+                    ),
+                    Image.asset(
+                      ImageConstant.logoPng,
+                      width: MediaQuery.of(context).size.width * 1 / 3,
+                    ),
+                    const SizedBox(
+                      height: 16.0,
+                    ),
+                    const Text(
+                      StringConst.appName,
+                      style: AppTextTheme.medium20PxBlack,
+                    ),
+                    const Text(
+                      StringConst.textCompany,
+                      style: AppTextTheme.smallGrey,
+                    ),
                   ],
                 ),
-                done: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Done ',
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 3.4 / 5,
+                child: IntroductionScreen(
+                  color: AppColors.primaryColor,
+                  showDoneButton: true,
+                  showNextButton: true,
+                  showSkipButton: false,
+                  next: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: const [
+                      Text(StringConst.next),
+                      Icon(Icons.keyboard_arrow_right),
+                    ],
+                  ),
+                  done: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: const [
+                      Text(
+                        StringConst.done,
+                      ),
+                      Icon(Icons.keyboard_arrow_right),
+                    ],
+                  ),
+                  onDone: () {
+                    Routes.instance.navigateTo(RouteName.loginScreen);
+                  },
+                  pages: [
+                    PageViewModel(
+                      useScrollView: true,
+                      decoration:
+                          PageDecoration(titleTextStyle: TextStyle(height: 0)),
+                      image: Image.asset(ImageConstant.splashBackgroundOne),
+                      titleWidget: Text(
+                        OnBoardingListBody[0],
+                        textAlign: TextAlign.center,
+                        maxLines: 5,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextTheme.normalGrey,
+                      ),
+                      body: '',
                     ),
-                    Icon(Icons.keyboard_arrow_right),
+                    PageViewModel(
+                      useScrollView: true,
+                      image: Image.asset(ImageConstant.splashBackgroundTwo),
+                      titleWidget: Text(
+                        OnBoardingListBody[1],
+                        textAlign: TextAlign.center,
+                        maxLines: 5,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextTheme.normalGrey,
+                      ),
+                      body: '',
+                    ),
+                    PageViewModel(
+                      useScrollView: true,
+                      image: Image.asset(ImageConstant.splashBackgroundThree),
+                      titleWidget: Text(
+                        OnBoardingListBody[2],
+                        textAlign: TextAlign.center,
+                        maxLines: 5,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextTheme.normalGrey,
+                      ),
+                      body: '',
+                    ),
                   ],
                 ),
-                onDone: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/login', (Route<dynamic> route) => false);
-                },
-                onSkip: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/login', (Route<dynamic> route) => false);
-                },
-                pages: [
-                  PageViewModel(
-                    useScrollView: true,
-                    decoration:
-                        PageDecoration(titleTextStyle: TextStyle(height: 0)),
-                    image: Image.asset(
-                        'assets/images/on_boarding/illustrate_new.png'),
-                    titleWidget: Text(
-                      OnBoardingListBody[0],
-                      textAlign: TextAlign.center,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextTheme.normalGrey,
-                    ),
-                    body: '',
-                  ),
-                  PageViewModel(
-                    useScrollView: true,
-                    image: Image.asset(
-                        'assets/images/on_boarding/illustrate_music.png'),
-                    titleWidget: Text(
-                      OnBoardingListBody[1],
-                      textAlign: TextAlign.center,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextTheme.normalGrey,
-                    ),
-                    body: '',
-                  ),
-                  PageViewModel(
-                    useScrollView: true,
-                    image: Image.asset(
-                        'assets/images/on_boarding/illustrate_shopping.png'),
-                    titleWidget: Text(
-                      OnBoardingListBody[2],
-                      textAlign: TextAlign.center,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextTheme.normalGrey,
-                    ),
-                    body: '',
-                  ),
-                ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

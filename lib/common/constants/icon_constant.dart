@@ -9,4 +9,6 @@ class IconConst {
   static const String user = '${_path}user.png';
   static const String home = '${_path}home.png';
   static const String phone = '${_path}phone.png';
+  static const String search = '${_path}search.png';
+  static const String imagePlaceHolder = '${_path}image_place_holder.svg';
 }

@@ -7,6 +7,7 @@ import 'package:my_gstore/common/ultils/log_util.dart';
 import 'package:my_gstore/presentation/journey/feature/auth/login/login_phone_number_screen.dart';
 import 'package:my_gstore/presentation/journey/feature/auth/login/login_screen.dart';
 import 'package:my_gstore/presentation/journey/feature/auth/otp/confirm_screen.dart';
+import 'package:my_gstore/presentation/journey/feature/screens/on_boarding_screen.dart';
 import 'package:my_gstore/presentation/journey/feature/screens/screen_container.dart';
 import 'package:my_gstore/presentation/journey/feature/screens/splash_screen.dart';
 import 'package:my_gstore/presentation/journey/feature/webView/webview_screen.dart';
@@ -75,6 +76,8 @@ class Routes {
         return CupertinoPageRoute(builder: (context) => SplashScreen());
       case RouteName.containerScreen:
         return CupertinoPageRoute(builder: (context) => ContainerScreen());
+      case RouteName.onBoardingScreen:
+        return CupertinoPageRoute(builder: (context) => OnBoardingScreen());
       case RouteName.loginWithPhoneNumber:
         return CupertinoPageRoute(
             builder: (context) => LoginWithPhoneNumberScreen());

@@ -8,7 +8,7 @@ import 'package:my_gstore/common/exception/connect_exception.dart';
 import 'package:my_gstore/common/exception/server_exception.dart';
 import 'package:my_gstore/common/exception/timeout_exception.dart';
 import 'package:my_gstore/common/exception/token_expired_exception.dart';
-import 'package:my_gstore/common/local/app_cache.dart';
+import 'package:my_gstore/common/global_app_cache/global_app_catch.dart';
 import 'package:my_gstore/common/local/local_app.dart';
 import 'package:my_gstore/common/network/app_header.dart';
 import 'package:my_gstore/common/network/configs.dart';
@@ -16,7 +16,7 @@ import 'package:my_gstore/common/ultils/log_util.dart';
 
 class AppClient {
   AppHeader? header;
-  final AppCache globalAppCatch;
+  final GlobalAppCache globalAppCatch;
   final LocalApp localApp;
   bool _runOnce = true;
 

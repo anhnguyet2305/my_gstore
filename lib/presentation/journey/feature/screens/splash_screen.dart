@@ -1,11 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:my_gstore/common/constants/icon_constant.dart';
 import 'package:my_gstore/common/constants/key_save_data_local.dart';
 import 'package:my_gstore/common/customs/custom_scaffold.dart';
+import 'package:my_gstore/common/global_app_cache/global_app_catch.dart';
 import 'package:my_gstore/common/local/local_app.dart';
+import 'package:my_gstore/common/model/profile_model.dart';
 import 'package:my_gstore/common/navigation/route_names.dart';
-import 'package:my_gstore/common/ultils/log_util.dart';
+import 'package:my_gstore/common/network/app_client.dart';
+import 'package:my_gstore/common/network/app_header.dart';
 import 'package:my_gstore/presentation/routes.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../injector_container.dart';
 
@@ -24,18 +30,43 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _initData() async {
-    String? dataProfile = injector<LocalApp>()
-        .getStringSharePreference(KeySaveDataLocal.keySaveDataProfile);
-    LOG.d('_initData: $dataProfile');
-    await Future.delayed(Duration(seconds: 1));
-    if (dataProfile?.isNotEmpty ?? false) {
-      // injector<AppCache>().profileModel =
-      //     ProfileModel.fromJson(json.decode(dataProfile!));
-      // Routes.instance.navigateTo(RouteName.containerScreen);
-      Routes.instance.navigateTo(RouteName.loginScreen);
-    } else {
-      Routes.instance.navigateTo(RouteName.loginScreen);
+    final localApp = injector<LocalApp>();
+    bool? showWelcome = localApp.getBool(KeySaveDataLocal.keySaveWelcomeScreen);
+    await Future.delayed(const Duration(milliseconds: 300));
+    if (showWelcome == null) {
+      localApp.saveBool(KeySaveDataLocal.keySaveWelcomeScreen, true);
+      Routes.instance.navigateTo(RouteName.onBoardingScreen);
+      return;
     }
+    String? accessToken =
+        localApp.getStringSharePreference(KeySaveDataLocal.keySaveAccessToken);
+    if (accessToken == null) {
+      Routes.instance.navigateTo(RouteName.loginScreen);
+      return;
+    }
+    AppHeader appHeader = AppHeader();
+    appHeader.accessToken = accessToken;
+    injector<AppClient>().setHeader(appHeader);
+    // final dataProfile = await appClient.get('Customer/GetProfile');
+    // final profileModel = ProfileModel.fromJson(dataProfile['Data']);
+    // globalAppCache.profileModel = profileModel;
+    final dataProfileString =
+        localApp.getStringSharePreference(KeySaveDataLocal.keySaveDataProfile);
+    if (dataProfileString != null) {
+      final profileModel =
+          ProfileModel.fromJson(json.decode(dataProfileString));
+      injector<GlobalAppCache>().profileModel = profileModel;
+    }
+    Routes.instance.navigateAndRemove(RouteName.containerScreen);
+
+    // LOG.d('_initData: $dataProfile');
+    // await Future.delayed(Duration(seconds: 1));
+    // if (dataProfile?.isNotEmpty ?? false) {
+    //
+    //   Routes.instance.navigateAndRemove(RouteName.containerScreen);
+    // } else {
+    //   Routes.instance.navigateAndRemove(RouteName.containerScreen);
+    // }
   }
 
   @override
@@ -51,8 +82,8 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Image.asset(
               IconConst.logo,
-              width: 207,
-              height: 207,
+              width: 187.w,
+              height: 187.h,
             )
           ],
         ),
