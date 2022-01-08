@@ -1,5 +1,6 @@
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:my_gstore/common/bloc/snackbar_bloc/snackbar_bloc.dart';
 import 'package:my_gstore/common/bloc/snackbar_bloc/snackbar_event.dart';
 import 'package:my_gstore/common/bloc/snackbar_bloc/snackbar_state.dart';
@@ -18,6 +19,24 @@ import '../enum.dart';
 import 'log_util.dart';
 
 class CommonUtils {
+  static dynamic convertDateTime(String? input,
+      {bool outputDateTime = false, String? format}) {
+    if (input?.isEmpty ?? true) {
+      return null;
+    }
+    DateFormat dateFormat = DateFormat(format ?? "yyyy-MM-ddTHH:mm:ss");
+    DateFormat dateFormatText = DateFormat("HH:mm - dd/MM/yyyy");
+    DateTime dateTime = dateFormat.parse(input!);
+    if (outputDateTime == true) {
+      return dateTime;
+    }
+    return dateFormatText.format(dateTime);
+  }
+
+  static bool isNull(dynamic input) {
+    return ["", null, false, 0].contains(input);
+  }
+
   static bool isEmptyOrNull(dynamic obj) {
     try {
       return (obj == null || obj.isEmpty);

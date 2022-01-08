@@ -15,6 +15,9 @@ class IconConst {
   static const String home_center_gift = '${_path}home_center_gift.png';
   static const String home_center_education =
       '${_path}home_center_education.png';
+  static const String charity_logo = '${_path}charity_logo.jpg';
+  static const String home_center_hand = '${_path}home_center_hand.png';
+  static const String home_center_chart = '${_path}home_center_chart.png';
 
   static const String home_center_gshop = '${_path}home_center_gshop.png';
   static const String home_center_qr = '${_path}home_center_qr.png';

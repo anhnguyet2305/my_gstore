@@ -1,8 +1,24 @@
 import 'package:intl/intl.dart';
+import 'package:my_gstore/common/ultils/log_util.dart';
 
 import 'common_util.dart';
 
 class FormatUtils {
+  static String formatCurrencyDoubleToString(double? currency,
+      {bool haveUnit = true, bool aboutZero = false}) {
+    try {
+      if (currency == 0 && aboutZero) {
+        return '0 ₫';
+      }
+      if (CommonUtils.isNull(currency)) return '';
+      final output = NumberFormat.simpleCurrency(locale: 'vi').format(currency);
+      return haveUnit ? output : output.trim().replaceAll('₫', '');
+    } catch (e) {
+      LOG.e('Exception: formatCurrencyDoubleToString: ${e.toString()}');
+      return '$currency';
+    }
+  }
+
   static double? formatMoneyFromStringTextField(String? input) {
     try {
       if (input?.isEmpty ?? true) return 0.0;

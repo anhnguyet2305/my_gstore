@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:my_gstore/common/model/app_position.dart';
 import 'package:my_gstore/common/model/profile_model.dart';
+import 'package:my_gstore/common/model/splash_model.dart';
 import 'package:my_gstore/domain/entities/user_entity.dart';
 
 class GlobalAppCache {
@@ -8,7 +9,7 @@ class GlobalAppCache {
 
   // AddressModel? defaultAddress;
   //
-  // SplashDataModel? splashDataModel;
+  SplashDataModel? splashDataModel;
 
   ProfileModel? profileModel;
 

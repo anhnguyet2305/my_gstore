@@ -5,6 +5,7 @@
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
+
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
@@ -38,6 +39,6 @@
             android:name="flutterEmbedding"
             android:value="2" />
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="YOUR KEY HERE"/>
+           android:value="AIzaSyC2iO53PIyJUHEiun6pofNkT8MJC9NO1KA"/>
     </application>
 </manifest>
