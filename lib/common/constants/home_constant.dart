@@ -5,7 +5,7 @@ class HomeConstant {
   static const String goodAfterNoon = 'Chào buổi chiều';
   static const String goodEvening = 'Chào buổi tối';
   static const String whatYourNeed = 'Bạn muốn tìm gì?';
-  static const String findNearMe = 'Tìm gần tôi';
+  static const String findNearMe = 'Tìm quanh tôi';
   static const String bestProjectNearYou = '${_path}bestProjectNearYou';
   static const String all = 'Tất cả';
   static const String userReputation = '${_path}userReputation';

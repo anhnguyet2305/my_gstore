@@ -10,5 +10,13 @@ class IconConst {
   static const String home = '${_path}home.png';
   static const String phone = '${_path}phone.png';
   static const String search = '${_path}search.png';
+  static const String iconRight = '${_path}next.png';
+  static const String home_center_share = '${_path}home_center_share.png';
+  static const String home_center_gift = '${_path}home_center_gift.png';
+  static const String home_center_education =
+      '${_path}home_center_education.png';
+
+  static const String home_center_gshop = '${_path}home_center_gshop.png';
+  static const String home_center_qr = '${_path}home_center_qr.png';
   static const String imagePlaceHolder = '${_path}image_place_holder.svg';
 }

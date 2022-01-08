@@ -11,8 +11,6 @@ import 'package:my_gstore/common/navigation/route_names.dart';
 import 'package:my_gstore/common/network/app_client.dart';
 import 'package:my_gstore/common/network/app_header.dart';
 import 'package:my_gstore/presentation/routes.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../injector_container.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -32,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void _initData() async {
     final localApp = injector<LocalApp>();
     bool? showWelcome = localApp.getBool(KeySaveDataLocal.keySaveWelcomeScreen);
-    await Future.delayed(const Duration(milliseconds: 300));
+    await Future.delayed(Duration(milliseconds: 200));
     if (showWelcome == null) {
       localApp.saveBool(KeySaveDataLocal.keySaveWelcomeScreen, true);
       Routes.instance.navigateTo(RouteName.onBoardingScreen);
@@ -47,9 +45,6 @@ class _SplashScreenState extends State<SplashScreen> {
     AppHeader appHeader = AppHeader();
     appHeader.accessToken = accessToken;
     injector<AppClient>().setHeader(appHeader);
-    // final dataProfile = await appClient.get('Customer/GetProfile');
-    // final profileModel = ProfileModel.fromJson(dataProfile['Data']);
-    // globalAppCache.profileModel = profileModel;
     final dataProfileString =
         localApp.getStringSharePreference(KeySaveDataLocal.keySaveDataProfile);
     if (dataProfileString != null) {
@@ -58,15 +53,6 @@ class _SplashScreenState extends State<SplashScreen> {
       injector<GlobalAppCache>().profileModel = profileModel;
     }
     Routes.instance.navigateAndRemove(RouteName.containerScreen);
-
-    // LOG.d('_initData: $dataProfile');
-    // await Future.delayed(Duration(seconds: 1));
-    // if (dataProfile?.isNotEmpty ?? false) {
-    //
-    //   Routes.instance.navigateAndRemove(RouteName.containerScreen);
-    // } else {
-    //   Routes.instance.navigateAndRemove(RouteName.containerScreen);
-    // }
   }
 
   @override
@@ -82,8 +68,8 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Image.asset(
               IconConst.logo,
-              width: 187.w,
-              height: 187.h,
+              width: 187,
+              height: 187,
             )
           ],
         ),

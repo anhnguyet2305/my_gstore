@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_gstore/common/constants/login_constant.dart';
 import 'package:my_gstore/common/theme/theme_text.dart';
 
@@ -35,7 +34,7 @@ class ButtonBottom extends StatelessWidget {
         width: double.infinity,
         margin: EdgeInsets.symmetric(
             horizontal:
-                paddingHorizontal ?? LoginConstant.marginHorizontalButton.w),
+                paddingHorizontal ?? LoginConstant.marginHorizontalButton),
         decoration: BoxDecoration(
             color: color, borderRadius: BorderRadius.all(Radius.circular(8.0))),
         child: Row(
